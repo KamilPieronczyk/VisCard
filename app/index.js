@@ -1,9 +1,12 @@
 import { Navigation } from 'react-native-navigation';
 import registerApp from './config/screens';
+import { Provider } from 'react-redux';
+import store from './Redux/Stores';
+
 
 export class App {
   constructor(){
-    registerApp();
+    registerApp(store, Provider);
     this.initializeApp();
   }
 
