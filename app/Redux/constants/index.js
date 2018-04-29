@@ -1,0 +1,2 @@
+export const SET_STATUS_BAR_COLOR = 'SET_STATUS_BAR_COLOR';
+export const HIDE_STATUS_BAR = 'HIDE_STATUS_BAR';
