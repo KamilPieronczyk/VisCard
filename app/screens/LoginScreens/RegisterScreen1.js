@@ -15,6 +15,7 @@ import { connect } from "react-redux";
 import LoginSectionButton from "../../components/LoginSectionComponents/Button";
 import LoginBackButton from "../../components/LoginSectionComponents/backButton";
 import LoginCenteredButton from "../../components/LoginSectionComponents/centeredButton";
+import { Form, Item, Input, Label, Button } from 'native-base';
 
 class RegisterScreen1Preload extends Component {
   constructor(props) {
@@ -76,24 +77,22 @@ class RegisterScreen1Preload extends Component {
         </ImageBackground>
         <View style={{ flex: 1 }}>
           <View style={styles.inputs}>
-            <TextInput
-              style={{ fontSize: 20, paddingBottom: 10 }}
-              placeholder={"First Name"}
-              underlineColorAndroid={Colors.loginColors}
-              placeholderTextColor={Colors.loginColors}
-            />
-            <TextInput
-              style={{ fontSize: 20, paddingBottom: 10 }}
-              placeholder={"Surname"}
-              underlineColorAndroid={Colors.loginColors}
-              placeholderTextColor={Colors.loginColors}
-            />
+          <Form>
+            <Item floatingLabel>
+              <Label>Username</Label>
+              <Input style={{ fontSize: 20, paddingBottom: 10, color: Colors.loginColors }} />
+            </Item>
+            <Item floatingLabel last>
+              <Label>Surname</Label>
+              <Input style={{ fontSize: 20, paddingBottom: 10, color: Colors.loginColors }}/>
+            </Item>
+          </Form>
             <View style={{justifyContent: 'center', alignItems: 'center'}} >
               <LoginSectionButton
               style={{ marginHorizontal: 15, marginBottom: 20, width: 100 }}
               onPress={this.next.bind(this)}
               text={"Next"}
-              />
+              />              
             </View>
             
           </View>          

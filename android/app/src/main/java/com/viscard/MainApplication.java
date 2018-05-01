@@ -12,6 +12,8 @@ import com.reactnativenavigation.NavigationApplication;
 import java.util.Arrays;
 import java.util.List;
 
+import com.oblador.vectoricons.VectorIconsPackage;
+
 public class MainApplication extends NavigationApplication {
 
   private final ReactNativeHost mReactNativeHost = new ReactNativeHost(this) {
@@ -23,7 +25,8 @@ public class MainApplication extends NavigationApplication {
     @Override
     protected List<ReactPackage> getPackages() {
       return Arrays.<ReactPackage>asList(
-          new MainReactPackage()
+          new MainReactPackage(),
+            new VectorIconsPackage()
       );
     }
   };
