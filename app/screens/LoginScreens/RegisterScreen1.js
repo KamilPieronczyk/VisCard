@@ -16,6 +16,7 @@ import LoginSectionButton from "../../components/LoginSectionComponents/Button";
 import LoginBackButton from "../../components/LoginSectionComponents/backButton";
 import LoginCenteredButton from "../../components/LoginSectionComponents/centeredButton";
 import { Form, Item, Input, Label, Button } from 'native-base';
+import { setUserNameReg, setUserSurnameReg} from '../../Redux/Actions/index';
 
 class RegisterScreen1Preload extends Component {
   constructor(props) {
@@ -23,9 +24,15 @@ class RegisterScreen1Preload extends Component {
     this.props.navigator.setStyle({      
       statusBarColor: 'transparent'
     });
+    this.state = {
+      name: '',
+      surname: '',
+    }
   }  
 
   next(){
+    this.props.setUserNameReg(this.state.name);
+    this.props.setUserSurnameReg(this.state.surname);
     this.props.navigator.push({
       screen: 'LoginScreens.RegisterScreen2',
       navigatorStyle: {
@@ -80,11 +87,11 @@ class RegisterScreen1Preload extends Component {
           <Form>
             <Item floatingLabel>
               <Label>Username</Label>
-              <Input style={{ fontSize: 20, paddingBottom: 10, color: Colors.loginColors }} />
+              <Input style={{ fontSize: 20, paddingBottom: 10, color: Colors.loginColors }} onChangeText={(username)=>this.setState({name: username})} />
             </Item>
             <Item floatingLabel last>
               <Label>Surname</Label>
-              <Input style={{ fontSize: 20, paddingBottom: 10, color: Colors.loginColors }}/>
+              <Input style={{ fontSize: 20, paddingBottom: 10, color: Colors.loginColors }} onChangeText={(surname)=>this.setState({surname: surname})} />
             </Item>
           </Form>
             <View style={{justifyContent: 'center', alignItems: 'center'}} >
@@ -116,7 +123,14 @@ const styles = StyleSheet.create({
 });
 
 const mapStateToProps = state => {
-  return { color: state.color };
+  return { name: state.name, surname: state.surname };
 };
 
-export default (RegisterScreen1 = connect(mapStateToProps)(RegisterScreen1Preload));
+const mapDispatchToProps = dispatch => {
+  return {
+    setUserNameReg: name => dispatch(setUserNameReg(name)),
+    setUserSurnameReg: surname => dispatch(setUserSurnameReg(surname))
+  };
+};
+
+export default (RegisterScreen1 = connect(mapStateToProps, mapDispatchToProps)(RegisterScreen1Preload));

@@ -1,12 +1,24 @@
-import { SET_STATUS_BAR_COLOR } from '../constants/index';
-import { HIDE_STATUS_BAR } from '../constants/index';
+import { SET_USER_NAME_REG } from '../constants/index';
+import { SET_USER_SURNAME_REG } from '../constants/index';
+import { SET_USER_PASSWORD_REG } from '../constants/index';
+import { SET_USER_EMAIL_REG } from '../constants/index';
 
-export const setStatusBarColor = color => ({ 
-    type: SET_STATUS_BAR_COLOR, 
-    payload: color 
+export const setUserNameReg = name => ({ 
+  type: SET_USER_NAME_REG, 
+  payload: name 
 });
 
-export const hideStausBar = (hide) => ({
-  type: HIDE_STATUS_BAR,
-  payload: hide
-})
+export const setUserSurnameReg = name => ({ 
+  type: SET_USER_SURNAME_REG, 
+  payload: name 
+});
+
+export const setUserPasswordReg = name => ({ 
+  type: SET_USER_PASSWORD_REG, 
+  payload: name 
+});
+
+export const setUserEmailReg = name => ({ 
+  type: SET_USER_EMAIL_REG, 
+  payload: name 
+});

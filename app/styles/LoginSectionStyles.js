@@ -1,4 +1,5 @@
 import {Colors} from './index';
+import {Dimensions} from 'react-native'
 
 export const LoginSectionStyles = {
   backButton: {
@@ -19,7 +20,7 @@ export const LoginSectionStyles = {
     paddingHorizontal: 40,
     position: "absolute",
     bottom: -20,
-    left: 115,
+    left: Dimensions.get('window') / 2,
     justifyContent: "center",
     alignItems: "center",
   }

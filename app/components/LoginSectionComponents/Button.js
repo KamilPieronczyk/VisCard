@@ -23,7 +23,7 @@ class LoginSectionButton extends Component {
         ]}
         onPress={this.props.onPress}
       >
-        <Text style={{ fontSize: 21, color: "#000000" }}>
+        <Text style={{ fontSize: 20, color: "#000000", fontWeight: '400', fontFamily: 'Roboto' }}>
           {this.props.text}
           {this.props.children}
         </Text>

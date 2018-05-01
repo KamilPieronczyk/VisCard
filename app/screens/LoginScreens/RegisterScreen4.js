@@ -15,28 +15,25 @@ import { connect } from "react-redux";
 import LoginSectionButton from "../../components/LoginSectionComponents/Button";
 import LoginBackButton from "../../components/LoginSectionComponents/backButton";
 import LoginCenteredButton from "../../components/LoginSectionComponents/centeredButton";
-import { setUserPasswordReg } from '../../Redux/Actions/index';
 
-class RegisterScreen3Preload extends Component {
+class RegisterScreen4Preload extends Component {
   constructor(props) {
     super(props);
     this.props.navigator.setStyle({      
       statusBarColor: 'transparent'
     });
-    this.state= {
-      password: '',
-      repeatedPassword: '',
+    this.state = {
+      safePassword: this.props.password.split('').map(char=>{ return '*'}),
     }
   }  
 
   next(){
-    this.props.setUserPasswordReg(this.state.password);
-    this.props.navigator.push({
-      screen: 'LoginScreens.RegisterScreen4',
-      navigatorStyle: {
-        navBarHidden: true,
-      },
-    });
+    // this.props.navigator.push({
+    //   screen: 'LoginScreens.RegisterScreen2',
+    //   navigatorStyle: {
+    //     navBarHidden: true,
+    //   },
+    // });
   }
 
   back(){
@@ -74,39 +71,39 @@ class RegisterScreen3Preload extends Component {
                 textAlign: "center"
               }}
             >
-              Easy share your cards with NFC
+              Check your data
             </Text>
           </View>
           <LoginBackButton onPress={this.back.bind(this)}/>
-          <LoginCenteredButton text={"Registration"} />
+          <LoginCenteredButton text={"Data"} />
         </ImageBackground>
-        <View style={{ flex: 1 }}>
+        <View style={{ flex: 3 }}>
           <View style={styles.inputs}>
-            <TextInput
-              style={{ fontSize: 20, paddingBottom: 10 }}
-              placeholder={"Password"}
-              underlineColorAndroid={Colors.loginColors}
-              placeholderTextColor={Colors.loginColors}
-              secureTextEntry={true}
-              onChangeText={(password)=>{this.setState({password: password})}}
-            />
-            <TextInput
-              style={{ fontSize: 20, paddingBottom: 10 }}
-              placeholder={"Repeat password"}
-              underlineColorAndroid={Colors.loginColors}
-              placeholderTextColor={Colors.loginColors}
-              secureTextEntry={true}
-              onChangeText={(repeatedPassword)=>{this.setState({repeatedPassword: repeatedPassword})}}
-            />
-            <View style={{justifyContent: 'center', alignItems: 'center'}} >
-              <LoginSectionButton
-              style={{ marginHorizontal: 15, marginBottom: 20, width: 100 }}
-              onPress={this.next.bind(this)}
-              text={"Next"}
-              />
+            {/* Left side */}
+            <View style={{flex: 1}} >
+              <Text style={styles.textStyle} >Name:</Text>
+              <Text style={styles.textStyle} >Surname:</Text>              
+              <Text style={styles.textStyle} >Email:</Text>              
+              <Text style={styles.textStyle} >Password:</Text>              
+            </View>
+
+            {/* Right side */}
+            <View style={{flex: 2}} >
+              <Text style={styles.textStyle} >{this.props.name}</Text>
+              <Text style={styles.textStyle} >{this.props.surname}</Text>
+              <Text style={styles.textStyle} >{this.props.email}</Text>
+              <Text style={styles.textStyle} >{this.state.safePassword}</Text>
             </View>
             
-          </View>          
+            
+          </View>   
+          <View style={{justifyContent: 'center', alignItems: 'center'}} >
+              <LoginSectionButton
+              style={{ marginHorizontal: 15, marginBottom: 20, width: 185 }}
+              onPress={this.next.bind(this)}
+              text={"Create account"}
+              />
+          </View>       
         </View>
       </View>
     );
@@ -115,9 +112,17 @@ class RegisterScreen3Preload extends Component {
 
 const styles = StyleSheet.create({
   inputs: {
-    flex: 1,
+    //flex: 1,
     paddingHorizontal: 15,
     marginTop: 30,
+    flexDirection: 'row',
+    paddingVertical: 30,
+  },
+  textStyle: {
+    fontSize: 20,
+    fontFamily: 'Roboto',
+    color: Colors.loginColors,
+    marginBottom: 10,
   },
   logo: {
     flex: 2,
@@ -127,13 +132,12 @@ const styles = StyleSheet.create({
 });
 
 const mapStateToProps = state => {
-  return { color: state.password };
+  return { 
+    name: state.name,
+    surname: state.surname,
+    email: state.email,
+    password: state.password,
+   };
 };
 
-const mapDispatchToProps = dispatch => {
-  return {
-    setUserPasswordReg: password => dispatch(setUserPasswordReg(password))
-  };
-};
-
-export default (RegisterScreen3 = connect(mapStateToProps, mapDispatchToProps)(RegisterScreen3Preload));
+export default (RegisterScreen4 = connect(mapStateToProps)(RegisterScreen4Preload));

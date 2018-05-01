@@ -72,6 +72,7 @@ class LoginScreenPreload extends Component {
             placeholder={"Password"}
             underlineColorAndroid={"rgba(0,0,0,0)"}
             placeholderTextColor={Colors.loginColors}
+            secureTextEntry={true}
           />
 
           <LoginSectionButton text={"Log in"} />

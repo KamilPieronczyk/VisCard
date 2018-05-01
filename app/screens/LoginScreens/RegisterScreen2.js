@@ -15,7 +15,7 @@ import { connect } from "react-redux";
 import LoginSectionButton from "../../components/LoginSectionComponents/Button";
 import LoginBackButton from "../../components/LoginSectionComponents/backButton";
 import LoginCenteredButton from "../../components/LoginSectionComponents/centeredButton";
-import RegisterScreen1 from "./RegisterScreen1";
+import { setUserEmailReg } from '../../Redux/Actions/index';
 
 class RegisterScreen2Preload extends Component {
   constructor(props) {
@@ -23,9 +23,13 @@ class RegisterScreen2Preload extends Component {
     this.props.navigator.setStyle({
       statusBarColor: "transparent"
     });
+    this.state = {
+      email: '',
+    }
   }
 
   next() {
+    this.props.setUserEmailReg(this.state.email);
     this.props.navigator.push({
       screen: 'LoginScreens.RegisterScreen3',
       navigatorStyle: {
@@ -82,6 +86,7 @@ class RegisterScreen2Preload extends Component {
               placeholder={"Email"}
               underlineColorAndroid={Colors.loginColors}
               placeholderTextColor={Colors.loginColors}
+              onChangeText={(email)=>this.setState({email: email})}
             />
             <View style={{ justifyContent: "center", alignItems: "center" }}>
             <LoginSectionButton
@@ -111,9 +116,15 @@ const styles = StyleSheet.create({
 });
 
 const mapStateToProps = state => {
-  return { color: state.color };
+  return { color: state.email };
 };
 
-export default (RegisterScreen2 = connect(mapStateToProps)(
+const mapDispatchToProps = dispatch => {
+  return {
+    setUserEmailReg: email => dispatch(setUserEmailReg(email))
+  };
+};
+
+export default (RegisterScreen2 = connect(mapStateToProps,mapDispatchToProps)(
   RegisterScreen2Preload
 ));
