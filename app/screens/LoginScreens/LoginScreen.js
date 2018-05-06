@@ -28,6 +28,7 @@ class LoginScreenPreload extends Component {
       navigatorStyle: {
         navBarHidden: true,
       },
+      animationType: 'slide-horizontal'
     });
   }
 
