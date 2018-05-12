@@ -18,6 +18,11 @@ const validateRules = {
             tooShort: "needs to have %{count} words or more",
             notValid: "contains wrong chars",
         }
+    },
+    email : {
+        email: {
+            message: "doesn't look like a valid email"
+          }
     }
 
 }

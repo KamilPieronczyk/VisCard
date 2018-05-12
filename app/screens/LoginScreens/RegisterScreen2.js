@@ -16,6 +16,9 @@ import LoginSectionButton from "../../components/LoginSectionComponents/Button";
 import LoginBackButton from "../../components/LoginSectionComponents/backButton";
 import LoginCenteredButton from "../../components/LoginSectionComponents/centeredButton";
 import { setUserEmailReg } from '../../Redux/Actions/index';
+import validation from '../../config/validate';
+import { Form, Item, Input, Label, Button } from "native-base";
+
 
 class RegisterScreen2Preload extends Component {
   constructor(props) {
@@ -25,6 +28,34 @@ class RegisterScreen2Preload extends Component {
     });
     this.state = {
       email: '',
+      emailSuccess: null,
+      emailErrorMessage: '',
+    }
+    this.validateEmail = this.validateEmail.bind(this);
+    this.submit = this.submit.bind(this);
+    this.next = this.next.bind(this);
+  }
+
+  validateEmail(){
+    let emailSuccess = validation('email',this.state.email);
+    if (!emailSuccess ) {
+      this.setState({
+        emailSuccess : true,
+        emailErrorMessage: '',
+      })
+      return true;
+    } else {
+      this.setState({
+        emailSuccess : false,
+        emailErrorMessage: emailSuccess,
+      })
+      return false;
+    }
+  }
+
+  submit() {
+    if (this.validateEmail()){
+      this.next();
     }
   }
 
@@ -81,17 +112,29 @@ class RegisterScreen2Preload extends Component {
         </ImageBackground>
         <View style={{ flex: 1 }}>
           <View style={styles.inputs}>
-            <TextInput
-              style={{ fontSize: 20, paddingBottom: 10 }}
-              placeholder={"Email"}
-              underlineColorAndroid={Colors.loginColors}
-              placeholderTextColor={Colors.loginColors}
-              onChangeText={(email)=>this.setState({email: email})}
-            />
+          <Form>
+              <Item
+                floatingLabel
+                success={this.state.emailSuccess == true ? true : false}
+                error={this.state.emailSuccess == false ? true : false}
+              >
+                <Label>Email</Label>
+                <Input
+                  style={{
+                    fontSize: 20,
+                    paddingBottom: 10,
+                    color: Colors.loginColors
+                  }}
+                  onChangeText={email => this.setState({ email: email })}
+                  onBlur={this.validateEmail}
+                />
+              </Item>
+              <Text style={styles.errorMessage}>{this.state.emailErrorMessage}</Text>
+            </Form>
             <View style={{ justifyContent: "center", alignItems: "center" }}>
             <LoginSectionButton
               style={{ marginHorizontal: 15, marginBottom: 20, width: 100 }}
-              onPress={this.next.bind(this)}
+              onPress={this.submit}
               text={"Next"}
             />
           </View>
@@ -112,6 +155,9 @@ const styles = StyleSheet.create({
     flex: 2,
     alignItems: "center",
     justifyContent: "center"
+  },
+  errorMessage: {
+    color: '#FF0000'
   }
 });
 
