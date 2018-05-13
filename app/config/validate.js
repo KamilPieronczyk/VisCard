@@ -23,6 +23,12 @@ const validateRules = {
         email: {
             message: "doesn't look like a valid email"
           }
+    },
+    password: {
+        length: {
+            minimum: 6,
+            tooShort: "needs to have %{count} letters or more"
+        }
     }
 
 }

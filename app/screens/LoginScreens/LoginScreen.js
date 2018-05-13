@@ -20,6 +20,17 @@ class LoginScreenPreload extends Component {
     this.props.navigator.setStyle({      
       statusBarColor: 'transparent'
     });
+    this.openHomeScreen = this.openHomeScreen.bind(this);
+  }
+
+  openHomeScreen(){
+    this.props.navigator.push({
+      screen: 'HomeScreen',
+      navigatorStyle: {
+        navBarHidden: true,
+      },
+      animationType: 'none'
+    });
   }
 
   openRegister(){
@@ -76,7 +87,7 @@ class LoginScreenPreload extends Component {
             secureTextEntry={true}
           />
 
-          <LoginSectionButton text={"Log in"} />
+          <LoginSectionButton text={"Log in"} onPress={this.openHomeScreen}/>
 
           <TouchableOpacity onPress={this.openRegister.bind(this)}>
             <Text
