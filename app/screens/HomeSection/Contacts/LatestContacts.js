@@ -8,13 +8,13 @@ class LatestContacts extends Component {
         <List>
           <ListItem avatar>
             <Left>
-              <Thumbnail source={require('../../assets/26.jpg')}/>
+              <Thumbnail source={require('../../../assets/26.jpg')}/>
             </Left>
             <Body>
               <Text>Jan Kowalski</Text>
               <Text note>957 485 325</Text>
             </Body>
-            <Right>
+            <Right style={{flexDirection: 'column',justifyContent: 'center', alignItems: 'center'}}>
               <Icon name="md-more" style={{fontSize: 30}} />
             </Right>
           </ListItem>

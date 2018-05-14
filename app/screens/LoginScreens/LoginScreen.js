@@ -25,7 +25,7 @@ class LoginScreenPreload extends Component {
 
   openHomeScreen(){
     this.props.navigator.push({
-      screen: 'HomeScreen',
+      screen: 'HomeTabs',
       navigatorStyle: {
         navBarHidden: true,
       },

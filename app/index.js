@@ -14,7 +14,7 @@ export class App {
     Navigation.startSingleScreenApp({
       screen: {
         //screen: 'LoginScreens.LoginScreen', // unique ID registered with Navigation.registerScreen
-        screen: 'LoginScreens.LoginScreen', // unique ID registered with Navigation.registerScreen
+        screen: 'HomeTabs', // unique ID registered with Navigation.registerScreen
         title: 'Welcome2', // title of the screen as appears in the nav bar (optional)
         navigatorStyle: {
           navBarHidden: true,

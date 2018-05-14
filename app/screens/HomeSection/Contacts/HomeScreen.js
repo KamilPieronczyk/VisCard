@@ -1,20 +1,25 @@
 import React, {Component} from 'react';
 import {View, StatusBar} from 'react-native';
-import {Colors} from '../../styles/index';
+import {Colors} from '../../../styles/index';
 import { Container,Content, Footer,FooterTab,Icon,Button, Header, Tab, Tabs, ScrollableTab, Text } from 'native-base';
 import LatestContacts from './LatestContacts';
 class HomeScreen extends Component {
     static navigatorStyle = {
         statusBarColor: Colors.primary,
-        drawUnderStatusBar: false,
+        drawUnderStatusBar: true,
     };
     constructor(props) {
         super(props);
         StatusBar.setBarStyle('light-content');
+        StatusBar.setBackgroundColor(Colors.primary);
+    }
+    componentDidMount(){
+      StatusBar.setBarStyle('light-content');
+        StatusBar.setBackgroundColor(Colors.primary);
     }
     render() {
       return (
-        <Container>
+        <Container style={{/*paddingTop: StatusBar.currentHeight*/}}>
         <Tabs renderTabBar={()=> <ScrollableTab style={{backgroundColor: Colors.primary}}/> } >
           <Tab heading="Latest" tabStyle={styles.TabStyle} activeTabStyle={styles.TabStyle} textStyle={styles.TabTextStyle} activeTextStyle={styles.ActiveTabTextStyle}>
           <LatestContacts />         
@@ -30,7 +35,7 @@ class HomeScreen extends Component {
           </Tab>
         </Tabs>        
 
-        <Footer style={{height: 45}}>
+        {/* <Footer style={{height: 45}}>
           <FooterTab style={{backgroundColor: '#fff'}}>
             <Button>
               <Icon name="md-contacts" style={styles.FooterIconActive}/>              
@@ -45,7 +50,7 @@ class HomeScreen extends Component {
               <Icon name="md-settings" style={styles.FooterIcon}/>              
             </Button>
           </FooterTab>
-        </Footer>
+        </Footer> */}
       </Container>
       );
     }
