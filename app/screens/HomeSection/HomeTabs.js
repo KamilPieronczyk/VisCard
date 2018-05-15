@@ -5,7 +5,7 @@ import { Button, Text, Icon, Footer, FooterTab } from "native-base";
 import HomeScreen from './Contacts/HomeScreen';
 import ShareScreen from './ShareScreens/ShareScrren';
 import {Colors } from '../../styles/index';
-export default (MainScreenNavigator = TabNavigator(
+const Navigator = TabNavigator(
   {
     HomeScreen: { screen: HomeScreen },
     ShareScreen: { screen: ShareScreen }
@@ -35,8 +35,7 @@ export default (MainScreenNavigator = TabNavigator(
                 <Icon name="md-contacts" style={styles.FooterIcon}/>   
               }
             </Button>
-            <Button
-              onPress={() => props.navigation.navigate("ShareScreen")}>
+            <Button>
               {props.navigationState.index === 1 ? 
                 <Icon name="md-share" style={styles.FooterIconActive}/> 
               :
@@ -57,4 +56,13 @@ export default (MainScreenNavigator = TabNavigator(
       );
     }
   }
-));
+);
+
+export default class MainScreenNavigator extends React.Component {
+  constructor(props) {
+    super(props);
+  }
+  render() {
+    return(<Navigator screenProps={this.props} />)
+  }
+}

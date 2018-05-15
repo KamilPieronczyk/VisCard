@@ -1,7 +1,7 @@
 import React, {Component} from 'react';
 import {View, StatusBar} from 'react-native';
 import {Colors} from '../../../styles/index';
-import { Container,Content, Footer,FooterTab,Icon,Button, Header, Tab, Tabs, ScrollableTab, Text } from 'native-base';
+import { Container,Content, Footer,FooterTab,Icon,Button, Header, Tab, Tabs, ScrollableTab, Text, Fab, Col } from 'native-base';
 import LatestContacts from './LatestContacts';
 class HomeScreen extends Component {
     static navigatorStyle = {
@@ -12,10 +12,19 @@ class HomeScreen extends Component {
         super(props);
         StatusBar.setBarStyle('light-content');
         StatusBar.setBackgroundColor(Colors.primary);
+        this.state = {
+          active: false,
+        }
+        this.openAddContactManualy = this.openAddContactManualy.bind(this);
     }
-    componentDidMount(){
-      StatusBar.setBarStyle('light-content');
-        StatusBar.setBackgroundColor(Colors.primary);
+    openAddContactManualy(){
+      this.props.screenProps.navigator.push({
+        screen: 'AddContactManualyScreen',
+        navigatorStyle: {
+          navBarHidden: true,
+        },
+        animationType: 'none'
+      });
     }
     render() {
       return (
@@ -25,7 +34,7 @@ class HomeScreen extends Component {
           <LatestContacts />         
           </Tab>
           <Tab heading="Family" tabStyle={styles.TabStyle} activeTabStyle={styles.TabStyle} textStyle={styles.TabTextStyle} activeTextStyle={styles.ActiveTabTextStyle}>
-            <Text>Tab 2</Text>
+            <Text></Text>
           </Tab>
           <Tab heading="Friends" tabStyle={styles.TabStyle} activeTabStyle={styles.TabStyle} textStyle={styles.TabTextStyle} activeTextStyle={styles.ActiveTabTextStyle}>
             <Text>Tab 2</Text>
@@ -34,6 +43,21 @@ class HomeScreen extends Component {
             <Text>Tab 2</Text>
           </Tab>
         </Tabs>        
+
+        <Fab
+            style={{ backgroundColor: Colors.primary }}
+            position="bottomRight"
+            direction="up"
+            active={this.state.active}
+            onPress={() => this.setState({ active: !this.state.active })}>
+            <Icon name="md-person-add" />           
+            <Button style={{ backgroundColor: Colors.secondary }} onPress={this.openAddContactManualy}>
+              <Icon name="md-add" />
+            </Button> 
+            <Button style={{ backgroundColor: Colors.primary }}>
+              <Icon name="md-add" />
+            </Button> 
+          </Fab>
 
         {/* <Footer style={{height: 45}}>
           <FooterTab style={{backgroundColor: '#fff'}}>

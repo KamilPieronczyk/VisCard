@@ -8,6 +8,7 @@ import RegisterScreen4 from '../screens/LoginScreens/RegisterScreen4';
 
 import HomeScreen from '../screens/HomeSection/Contacts/HomeScreen';
 import MainScreenNavigator from '../screens/HomeSection/HomeTabs';
+import AddContactManualyScreen from '../screens/AddContact/AddContactManualyScreen';
 
 export default (store, Provider) => {
   Navigation.registerComponent('LoginScreens.LoginScreen', () => LoginScreen, store, Provider);    
@@ -17,4 +18,5 @@ export default (store, Provider) => {
   Navigation.registerComponent('LoginScreens.RegisterScreen4', () => RegisterScreen4, store, Provider);  
   Navigation.registerComponent('HomeScreen', () => HomeScreen);  
   Navigation.registerComponent('HomeTabs', () => MainScreenNavigator);  
+  Navigation.registerComponent('AddContactManualyScreen', () => AddContactManualyScreen);  
 };
