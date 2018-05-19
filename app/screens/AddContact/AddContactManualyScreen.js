@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import { View, Text, StatusBar, StyleSheet,PanResponder, Animated } from 'react-native';
 import { Container, Header, Button, Icon, Title, Left, Body, Right, Content, Item, Input, Label } from 'native-base';
 import { Colors } from '../../styles/index';
-import { ButtonText, Display1, Caption, TextBold } from '../../components/Typography/Typography';
+import { ButtonText, Display1, Caption, TextBold, TextTitle, SubHeading } from '../../components/Typography/Typography';
 import ContactIcon from '../../components/IconButton/IconButtons';
 
 class AddContactManualyScreen extends Component {
@@ -17,6 +17,7 @@ class AddContactManualyScreen extends Component {
     this.state = {
       lastDy: 0,
       dy: 0,
+      translateY: new Animated.Value(0),
     }
   }  
 
@@ -27,39 +28,34 @@ class AddContactManualyScreen extends Component {
 
       // Initially, set the value of x and y to 0 (the center of the screen)
       onPanResponderGrant: (e, gestureState) => {
-
+        
       },
 
       // When we drag/pan the object, set the delate to the states pan position
       onPanResponderMove: (e, gestureState) => {
-        let dy = gestureState.dy + this.state.lastDy;
-        if (dy > 270) {
-          dy = 270;
+        let dy = gestureState.dy;
+        if (dy > 465) {
+          dy = 465;
         } else {
-          if (dy < -200) {
-            dy = -200;
+          if (dy < 0) {
+            dy = 0;
           }
         }
-
-        this.setState({dy: dy});
+        let dzielnik = (dy < 100) ? 1 : Math.round(dy / 100) + 1; 
+        if (dy < 300) Animated.spring(this.state.translateY, { toValue: dy/dzielnik }).start();
+        if (dy > 300) Animated.spring(this.state.translateY, { toValue: 465 }).start();
       },
 
       onPanResponderRelease: (e, {vx, vy, dy}) => {
-        if (dy > 270) {
-          dy = 270;
-        } else {
-          if (dy < -200) {
-            dy = -200;
-          }
-        }
-        this.setState({lastDy: dy})
+        if (dy > 300) Animated.spring(this.state.translateY, { toValue: 465 }).start();
+        if (dy < 300) Animated.spring(this.state.translateY, { toValue: 0 }).start();
       }
     });
   }
 
   render() {
     // Calculate the transform property and set it as a value for our style which we add below to the Animated.View component
-    let imageStyle = {transform: [{translateY: this.state.dy}]};
+    let imageStyle = {transform: [{translateY: this.state.translateY }]};
 
     return (      
       <Container>
@@ -98,7 +94,7 @@ class AddContactManualyScreen extends Component {
         </Content>  
 
         <Animated.View style={[styles.buttonsModal, imageStyle]} {...this._panResponder.panHandlers}>
-          <TextBold style={styles.header} color="#fff">Add data to your contact</TextBold>
+          <SubHeading style={styles.header} color="#fff">Add data to your contact</SubHeading>
           <View style={styles.iconBox}>
             <ContactIcon icon="md-call" color={Colors.phoneColor} >Phone number</ContactIcon>
             <ContactIcon icon="md-mail" color={Colors.emailColor} >Email adress</ContactIcon>
@@ -129,7 +125,7 @@ const styles = StyleSheet.create({
   buttonsModal: {
     zIndex: 100,
     position: 'absolute',
-    bottom: -200,
+    bottom: 0,
     left: 0,
     right: 0,
     height: 500,
@@ -141,7 +137,7 @@ const styles = StyleSheet.create({
     borderTopLeftRadius: 15,
     borderTopRightRadius: 15,
     backgroundColor: Colors.primary,
-    height: 31,
+    height: 35,
     paddingLeft: 30,
     paddingTop: 7,
   },

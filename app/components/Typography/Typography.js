@@ -47,7 +47,7 @@ export class Headline extends Component {
   }
 }
 
-export class Title extends Component {
+export class TextTitle extends Component {
   constructor(props){
     super(props);
   }
@@ -57,7 +57,7 @@ export class Title extends Component {
       textAlign: this.props.center ? 'center' : 'left',
     }
     return (      
-        <Text style={[Typography.Title, style, this.props.style, ]}> {this.props.children} </Text>      
+        <Text style={[Typography.title, style, this.props.style, ]}> {this.props.children} </Text>      
     );
   }
 }
