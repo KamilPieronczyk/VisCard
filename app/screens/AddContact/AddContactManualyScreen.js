@@ -3,6 +3,7 @@ import { View, Text, StatusBar, StyleSheet,PanResponder, Animated } from 'react-
 import { Container, Header, Button, Icon, Title, Left, Body, Right, Content, Item, Input, Label } from 'native-base';
 import { Colors } from '../../styles/index';
 import { ButtonText, Display1, Caption, TextBold } from '../../components/Typography/Typography';
+import ContactIcon from '../../components/IconButton/IconButtons';
 
 class AddContactManualyScreen extends Component {
   constructor(props) {
@@ -98,6 +99,13 @@ class AddContactManualyScreen extends Component {
 
         <Animated.View style={[styles.buttonsModal, imageStyle]} {...this._panResponder.panHandlers}>
           <TextBold style={styles.header} color="#fff">Add data to your contact</TextBold>
+          <View style={styles.iconBox}>
+            <ContactIcon icon="md-call" color={Colors.phoneColor} >Phone number</ContactIcon>
+            <ContactIcon icon="md-mail" color={Colors.emailColor} >Email adress</ContactIcon>
+            <ContactIcon icon="md-pin"  color={Colors.adressColor}>Home adress</ContactIcon>
+            <ContactIcon icon="md-link" color={Colors.webColor}   >Web adress</ContactIcon>
+            <ContactIcon icon="md-text" color={Colors.noticeColor}>Notice</ContactIcon>
+          </View>          
         </Animated.View>      
         
       </Container>      
@@ -125,7 +133,7 @@ const styles = StyleSheet.create({
     left: 0,
     right: 0,
     height: 500,
-    backgroundColor: '#ddd',
+    backgroundColor: '#fff',
     borderTopLeftRadius: 15,
     borderTopRightRadius: 15,
   },
@@ -136,5 +144,10 @@ const styles = StyleSheet.create({
     height: 31,
     paddingLeft: 30,
     paddingTop: 7,
+  },
+  iconBox: {
+    flexDirection: 'row',
+    flexWrap: 'wrap',
+    justifyContent: 'center',
   }
 })

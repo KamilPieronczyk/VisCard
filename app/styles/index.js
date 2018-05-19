@@ -6,6 +6,11 @@ export const Colors = {
     loginPrimaryColor: '#D92EAB',
     textColor: '#212121',
     captionColor: '#737373',
+    phoneColor: '#34C962',
+    emailColor: '#598FBA',
+    adressColor: '#D92EAB',
+    webColor: '#FFCE00',
+    noticeColor: '#B2B2B2',
 };
 
 export const Typography = {
