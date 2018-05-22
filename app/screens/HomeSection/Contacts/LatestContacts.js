@@ -2,11 +2,24 @@ import React, { Component } from 'react';
 import { Container, Header, Content, List, ListItem, Left, Body, Right, Thumbnail, Text, Icon } from 'native-base';
 
 class LatestContacts extends Component {
+  constructor(props){
+    super(props);
+    this.openContact = this.openContact.bind(this);
+  }
+  openContact(){
+    this.props.navigator.push({
+      screen: 'ContactScreen',
+      navigatorStyle: {
+        navBarHidden: true,
+      },
+      animationType: 'none'
+    });
+  }
   render() {
     return (
         <Content>
         <List>
-          <ListItem avatar>
+          <ListItem avatar onPress={this.openContact}>
             <Left>
               <Thumbnail source={require('../../../assets/26.jpg')}/>
             </Left>

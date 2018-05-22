@@ -10,6 +10,7 @@ class HomeScreen extends Component {
     };
     constructor(props) {
         super(props);
+        StatusBar.setHidden(false);
         StatusBar.setBarStyle('light-content');
         StatusBar.setBackgroundColor(Colors.primary);
         this.state = {
@@ -27,11 +28,12 @@ class HomeScreen extends Component {
       });
     }
     render() {
+      const { navigator } = this.props.screenProps;
       return (
         <Container style={{/*paddingTop: StatusBar.currentHeight*/}}>
         <Tabs renderTabBar={()=> <ScrollableTab style={{backgroundColor: Colors.primary}}/> } >
           <Tab heading="Latest" tabStyle={styles.TabStyle} activeTabStyle={styles.TabStyle} textStyle={styles.TabTextStyle} activeTextStyle={styles.ActiveTabTextStyle}>
-          <LatestContacts />         
+          <LatestContacts navigator={navigator} />         
           </Tab>
           <Tab heading="Family" tabStyle={styles.TabStyle} activeTabStyle={styles.TabStyle} textStyle={styles.TabTextStyle} activeTextStyle={styles.ActiveTabTextStyle}>
             <Text></Text>

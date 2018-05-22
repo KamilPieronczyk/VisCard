@@ -15,10 +15,11 @@ class AddContactManualyScreen extends Component {
     StatusBar.setBackgroundColor(Colors.primary);   
     
     this.state = {
-      lastDy: 0,
       dy: 0,
       translateY: new Animated.Value(0),
     }
+
+    this.back = this.back.bind(this);
   }  
 
   componentWillMount() {
@@ -34,23 +35,30 @@ class AddContactManualyScreen extends Component {
       // When we drag/pan the object, set the delate to the states pan position
       onPanResponderMove: (e, gestureState) => {
         let dy = gestureState.dy;
-        if (dy > 465) {
-          dy = 465;
+        if (dy > 265) {
+          dy = 265;
         } else {
           if (dy < 0) {
             dy = 0;
           }
         }
-        let dzielnik = (dy < 100) ? 1 : Math.round(dy / 100) + 1; 
-        if (dy < 300) Animated.spring(this.state.translateY, { toValue: dy/dzielnik }).start();
-        if (dy > 300) Animated.spring(this.state.translateY, { toValue: 465 }).start();
+        if (dy < 150) Animated.spring(this.state.translateY, { toValue: dy/2 }).start();
+        if (dy > 150) Animated.spring(this.state.translateY, { toValue: 265 }).start();
       },
 
       onPanResponderRelease: (e, {vx, vy, dy}) => {
-        if (dy > 300) Animated.spring(this.state.translateY, { toValue: 465 }).start();
-        if (dy < 300) Animated.spring(this.state.translateY, { toValue: 0 }).start();
+        if (dy > 150) Animated.spring(this.state.translateY, { toValue: 265 }).start();
+        if (dy < 150) Animated.spring(this.state.translateY, { toValue: 0 }).start();
       }
     });
+  }
+
+  back(){
+    this.props.navigator.pop();
+  }
+
+  save(){
+
   }
 
   render() {
@@ -61,7 +69,7 @@ class AddContactManualyScreen extends Component {
       <Container>
         <Content>
           <View style={{flexDirection: 'row'}}>
-            <Button transparent>
+            <Button transparent onPress={this.back} >
               <Icon name="md-close" style={{color: Colors.darkGrey}}/>
             </Button>
             <Text style={{flex: 1}}></Text>
@@ -128,7 +136,7 @@ const styles = StyleSheet.create({
     bottom: 0,
     left: 0,
     right: 0,
-    height: 500,
+    height: 300,
     backgroundColor: '#fff',
     borderTopLeftRadius: 15,
     borderTopRightRadius: 15,

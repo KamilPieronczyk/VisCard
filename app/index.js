@@ -14,8 +14,7 @@ export class App {
     Navigation.startSingleScreenApp({
       screen: {
         //screen: 'LoginScreens.LoginScreen', // unique ID registered with Navigation.registerScreen
-        screen: 'AddContactManualyScreen', // unique ID registered with Navigation.registerScreen
-        title: 'Welcome2', // title of the screen as appears in the nav bar (optional)
+        screen: 'HomeTabs', // unique ID registered with Navigation.registerScreen
         navigatorStyle: {
           navBarHidden: true,
         }, // override the navigator style for the screen, see "Styling the navigator" below (optional)

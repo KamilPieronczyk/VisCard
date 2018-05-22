@@ -35,7 +35,8 @@ const Navigator = TabNavigator(
                 <Icon name="md-contacts" style={styles.FooterIcon}/>   
               }
             </Button>
-            <Button>
+            <Button
+              onPress={() => props.navigation.navigate("ShareScreen")}>
               {props.navigationState.index === 1 ? 
                 <Icon name="md-share" style={styles.FooterIconActive}/> 
               :
