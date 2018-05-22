@@ -5,6 +5,9 @@ import { Container, Button, Icon, Card, CardItem, Body, Text, Left, Right } from
 import { ButtonText, SubHeading, Caption, TextTitle } from '../../components/Typography/Typography';
 
 class ContactScreen extends Component {
+  static navigatorStyle = {
+    statusBarHidden: true,
+  };
   constructor(props){
     super(props);
     StatusBar.setHidden(true, 'slide');
