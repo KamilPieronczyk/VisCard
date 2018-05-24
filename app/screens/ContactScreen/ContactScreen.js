@@ -6,12 +6,12 @@ import { ButtonText, SubHeading, Caption, TextTitle } from '../../components/Typ
 
 class ContactScreen extends Component {
   static navigatorStyle = {
-    statusBarHidden: true,
+    drawUnderStatusBar: true,
+    StatusBarColor: 'transparent',
   };
   constructor(props){
     super(props);
-    StatusBar.setHidden(true, 'slide');
-    this.back = this.back.bind(this);
+    this.back = this.back.bind(this);     
   }
   back(){
     this.props.navigator.pop();
@@ -99,7 +99,8 @@ class ContactScreen extends Component {
 
 const styles = StyleSheet.create({
   image: {
-    height: 250,    
+    height: 274,
+    paddingTop: 24,    
   },
   container: {
     backgroundColor: Colors.grey,

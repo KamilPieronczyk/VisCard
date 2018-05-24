@@ -11,6 +11,7 @@ class LatestContacts extends Component {
       screen: 'ContactScreen',
       navigatorStyle: {
         navBarHidden: true,
+        StatusBarColor: 'transparent',
       },
       animationType: 'none'
     });

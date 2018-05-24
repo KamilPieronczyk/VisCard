@@ -3,11 +3,16 @@ import { StatusBar, StyleSheet } from 'react-native';
 import { Container,Content, Header, Left, Body, Right, Button, Icon, Title, List, ListItem, Text, Fab } from 'native-base';
 import { Colors } from '../../styles/index';
 import { SubHeading, Caption, TextBold } from '../../components/Typography/Typography';
-export default class SettingsScreen extends Component {
+export default class EditContactScreen extends Component {
 
   constructor(props){
     super(props);    
     this.back = this.back.bind(this);
+    this.openEditNick = this.openEditNick.bind(this);
+  }
+
+  openEditNick(){
+    this.props.navigation.navigate('EditNickScreen')
   }
 
   back(){
@@ -36,7 +41,7 @@ export default class SettingsScreen extends Component {
             <ListItem itemDivider> 
               <TextBold color={Colors.primaryLight}>Personal data</TextBold>
             </ListItem>          
-            <ListItem>   
+            <ListItem onPress={this.openEditNick}>   
               <Left style={styles.left} >
                 <SubHeading>Nick</SubHeading>
                 <Caption>Set contact nick</Caption>

@@ -3,6 +3,7 @@ export const Colors = {
     primaryLight: '#D92EAB',
     secondary: '#598FBA',
     darkGrey: '#B2B2B2',
+    backgroundGrey: '#FBFBFB',
     grey: '#F0F0F0',
     loginColors: '#5A334F',
     loginPrimaryColor: '#D92EAB',
