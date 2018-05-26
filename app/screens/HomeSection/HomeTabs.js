@@ -56,7 +56,7 @@ const Navigator = TabNavigator(
               }               
             </Button>
             <Button
-              onPress={() => props.navigation.navigate("SettingsScreen")}>
+              onPress={() => props.navigation.navigate("SettingsNavigator")}>
               {props.navigationState.index === 3 ? 
                 <Icon name="md-settings" style={styles.FooterIconActive}/> 
               :

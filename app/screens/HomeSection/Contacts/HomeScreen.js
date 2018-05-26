@@ -6,11 +6,9 @@ import LatestContacts from './LatestContacts';
 class HomeScreen extends Component {
     static navigatorStyle = {
         statusBarColor: Colors.primary,
-        drawUnderStatusBar: true,
     };
     constructor(props) {
         super(props);
-        StatusBar.setHidden(false);
         StatusBar.setBarStyle('light-content');
         StatusBar.setBackgroundColor(Colors.primary);
         this.state = {

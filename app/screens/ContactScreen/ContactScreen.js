@@ -6,15 +6,21 @@ import { ButtonText, SubHeading, Caption, TextTitle } from '../../components/Typ
 
 class ContactScreen extends Component {
   static navigatorStyle = {
-    drawUnderStatusBar: true,
-    StatusBarColor: 'transparent',
+      drawUnderStatusBar: true,
   };
-  constructor(props){
+  constructor(props){    
     super(props);
-    this.back = this.back.bind(this);     
+    this.props.navigator.setStyle({
+      statusBarColor: "transparent",
+    });    
+    this.back = this.back.bind(this);
   }
   back(){
-    this.props.navigator.pop();
+    StatusBar.setBackgroundColor(Colors.primary);
+    this.props.navigator.setStyle({
+      drawUnderStatusBar: false,
+    });  
+    this.props.navigator.pop();    
   }
   render() {
     return (
