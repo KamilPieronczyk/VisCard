@@ -14,7 +14,7 @@ export class App {
     Navigation.startSingleScreenApp({
       screen: {
         //screen: 'LoginScreens.LoginScreen', // unique ID registered with Navigation.registerScreen
-        screen: 'HomeTabs', // unique ID registered with Navigation.registerScreen
+        screen: 'AdressScreen', // unique ID registered with Navigation.registerScreen
         navigatorStyle: {
           navBarHidden: true,
         }, // override the navigator style for the screen, see "Styling the navigator" below (optional)

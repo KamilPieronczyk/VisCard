@@ -10,6 +10,8 @@ import HomeScreen from '../screens/HomeSection/Contacts/HomeScreen';
 import MainScreenNavigator from '../screens/HomeSection/HomeTabs';
 import AddContactManualyScreen from '../screens/AddContact/AddContactManualyScreen';
 import ContactScreen from '../screens/ContactScreen/ContactScreen';
+import ModalIconScreen from "../screens/ModalIconScreen/ModalIconScreen";
+import AdressScreen from "../screens/AddDataItems/AdressScreen";
 
 export default (store, Provider) => {
   Navigation.registerComponent('LoginScreens.LoginScreen', () => LoginScreen, store, Provider);    
@@ -21,4 +23,6 @@ export default (store, Provider) => {
   Navigation.registerComponent('HomeTabs', () => MainScreenNavigator);  
   Navigation.registerComponent('AddContactManualyScreen', () => AddContactManualyScreen);  
   Navigation.registerComponent('ContactScreen', () => ContactScreen);  
+  Navigation.registerComponent('ModalIconScreen', () => ModalIconScreen);  
+  Navigation.registerComponent('AdressScreen', () => AdressScreen);  
 };

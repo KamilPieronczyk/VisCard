@@ -3,12 +3,15 @@ import { StatusBar, StyleSheet } from 'react-native';
 import { Container,Content, Header, Left, Body, Right, Button, Icon, Title, List, ListItem, Text, Fab } from 'native-base';
 import { Colors } from '../../styles/index';
 import { SubHeading, Caption, TextBold } from '../../components/Typography/Typography';
+import { Navigation } from 'react-native-navigation';
+
 export default class EditContactScreen extends Component {
 
   constructor(props){
     super(props);    
     this.back = this.back.bind(this);
     this.openEditNick = this.openEditNick.bind(this);
+    this.opneModal = this.opneModal.bind(this);
   }
 
   openEditNick(){
@@ -17,6 +20,17 @@ export default class EditContactScreen extends Component {
 
   back(){
     this.props.navigation.pop()
+  }
+
+  opneModal(){
+    Navigation.showLightBox({
+      screen: 'ModalIconScreen', // unique ID registered with Navigation.registerScreen
+      style: {
+        backgroundBlur: 'xlight', // 'dark' / 'light' / 'xlight' / 'none' - the type of blur on the background
+        backgroundColor: '#ffffff80', // tint color for the background, you can specify alpha here (optional)
+        tapBackgroundToDismiss: true // dismisses LightBox on background taps (optional)
+      }
+    });
   }
 
   render() {
@@ -84,7 +98,8 @@ export default class EditContactScreen extends Component {
         </Content>
         <Fab
             style={{ backgroundColor: Colors.primaryLight, height: 40, width: 40 }}
-            position="bottomRight">
+            position="bottomRight"
+            onPress={this.opneModal} >
             <Icon name="md-add" />
         </Fab>
 

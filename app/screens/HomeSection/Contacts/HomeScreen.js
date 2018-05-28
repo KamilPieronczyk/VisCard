@@ -3,6 +3,7 @@ import {View, StatusBar} from 'react-native';
 import {Colors} from '../../../styles/index';
 import { Container,Content, Footer,FooterTab,Icon,Button, Header, Tab, Tabs, ScrollableTab, Text, Fab, Col } from 'native-base';
 import LatestContacts from './LatestContacts';
+
 class HomeScreen extends Component {
     static navigatorStyle = {
         statusBarColor: Colors.primary,
@@ -14,7 +15,7 @@ class HomeScreen extends Component {
         this.state = {
           active: false,
         }
-        this.openAddContactManualy = this.openAddContactManualy.bind(this);
+        this.openAddContactManualy = this.openAddContactManualy.bind(this);        
     }
     openAddContactManualy(){
       this.props.screenProps.navigator.push({
