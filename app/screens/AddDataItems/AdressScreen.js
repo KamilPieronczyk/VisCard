@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { View, Text, StyleSheet, Image, TouchableNativeFeedback, ImageBackground, StatusBar } from 'react-native';
-import { Container, Content, Footer, Left, Icon } from "native-base";
+import { Container, Content, Footer, Left, Icon, Form, Item, Input ,Label } from "native-base";
 import ContactIcon from "../../components/IconButton/IconButtons";
 import { Colors } from "../../styles/index";
 import { Navigation } from 'react-native-navigation';
@@ -19,7 +19,8 @@ class AdressScreen extends Component {
     this.back = this.back.bind(this);
  }
  back(){
-     
+    StatusBar.setTranslucent(false);
+     this.props.navigator.dismissModal();
  }
   render() {
     return (      
@@ -27,15 +28,30 @@ class AdressScreen extends Component {
         {/* <Image source={require('./../../assets/PinIcon.png')} /> */}
         <Icon name="md-pin" style={styles.icon} />
         <View style={styles.formContainer}>
+            <Form style={styles.form}>
+                <Item stackedLabel>
+                    <Label style={styles.label} >Label</Label>
+                    <Input style={styles.input} placeholder="Home adress" />
+                </Item>
+                <Item stackedLabel last>
+                    <Label style={styles.label} >Adress</Label>
+                    <Input style={styles.input} placeholder="United States" />
+                </Item>
+            </Form>
+
             <TouchableNativeFeedback
-            background={TouchableNativeFeedback.SelectableBackground()}>
+            background={TouchableNativeFeedback.SelectableBackground()}>               
                 <View style={styles.saveButton}>
                     <TextTitle color="#fff" center >Save</TextTitle>
                 </View>
             </TouchableNativeFeedback>
         </View>
         <View style={styles.backButton}>
-            <Icon name="md-arrow-back" style={styles.backButtonArrow} />
+        <TouchableNativeFeedback
+            background={TouchableNativeFeedback.SelectableBackground()}
+            onPress={this.back} >               
+                <Icon name="md-arrow-back" style={styles.backButtonArrow} />
+            </TouchableNativeFeedback>            
         </View>
       </ImageBackground>
       
@@ -55,6 +71,18 @@ const styles = StyleSheet.create({
         marginTop: 80,
         marginBottom: 35,
     },
+    form: {
+        padding: 15,
+        flex: 1,
+    },
+    label: {
+        color: Colors.adressColor,
+        fontSize: 12,
+    },
+    input: {
+        fontSize: 18,
+        color: 'rgba(0, 0, 0, 0.7)'
+    },
     formContainer: {
         backgroundColor: '#fff',
         borderRadius: 20,
@@ -64,6 +92,7 @@ const styles = StyleSheet.create({
         left: 15,
         right: 15,
         bottom: 80, 
+        display: 'flex',
     },
     saveButton: {        
         borderBottomLeftRadius: 20,

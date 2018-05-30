@@ -20,6 +20,7 @@ class AddContactManualyScreen extends Component {
     }
 
     this.back = this.back.bind(this);
+    this.openAdressModal = this.openAdressModal.bind(this);
   }  
 
   componentWillMount() {
@@ -54,11 +55,22 @@ class AddContactManualyScreen extends Component {
   }
 
   back(){
+    StatusBar.setBackgroundColor(Colors.primary);
     this.props.navigator.pop();
   }
 
   save(){
 
+  }
+
+  openAdressModal(){
+    this.props.navigator.showModal({
+      screen: 'AdressScreen',
+      navigatorStyle: {
+        navBarHidden: true,
+      },
+      animationType: 'slide-up'
+    });
   }
 
   render() {
@@ -106,7 +118,7 @@ class AddContactManualyScreen extends Component {
           <View style={styles.iconBox}>
             <ContactIcon icon="md-call" color={Colors.phoneColor} >Phone number</ContactIcon>
             <ContactIcon icon="md-mail" color={Colors.emailColor} >Email adress</ContactIcon>
-            <ContactIcon icon="md-pin"  color={Colors.adressColor}>Home adress</ContactIcon>
+            <ContactIcon icon="md-pin"  color={Colors.adressColor} onPress={this.openAdressModal}>Home adress</ContactIcon>
             <ContactIcon icon="md-link" color={Colors.webColor}   >Web adress</ContactIcon>
             <ContactIcon icon="md-text" color={Colors.noticeColor}>Notice</ContactIcon>
           </View>          

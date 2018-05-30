@@ -23,7 +23,7 @@ class HomeScreen extends Component {
         navigatorStyle: {
           navBarHidden: true,
         },
-        animationType: 'none'
+        animationType: 'fade'
       });
     }
     render() {
